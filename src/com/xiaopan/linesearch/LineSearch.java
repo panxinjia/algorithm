@@ -1,5 +1,7 @@
 package com.xiaopan.linesearch;
 
+import com.xiaopan.linesearch.bean.Student;
+
 public class LineSearch {
 
     private LineSearch() {
@@ -27,14 +29,15 @@ public class LineSearch {
      * @param target 目标
      * @return 索引值
      */
-    public static <E extends Comparable<E>> int lineSearch(E[] data, E target) {
+    public static <E> int lineSearch(E[] data, E target) {
         for (int i = 0; i < data.length; i++) {
-            if (data[i].compareTo(target) == 0) {
+            if (data[i].equals(target)) {
                 return i;
             }
         }
         return -1;
     }
+
 
 }
 

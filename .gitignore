@@ -30,6 +30,6 @@ algorithm.iml
 hs_err_pid*
 
 # idea out put
-algorithm.iml
+*.iml
 .idea
 out
