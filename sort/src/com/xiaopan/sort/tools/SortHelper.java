@@ -1,5 +1,6 @@
 package com.xiaopan.sort.tools;
 
+import com.xiaopan.sort.BubbleSort;
 import com.xiaopan.sort.InsertionSort;
 import com.xiaopan.sort.SelectionSort;
 
@@ -37,6 +38,7 @@ public class SortHelper {
         switch (sortType) {
             case SELECTION_SORT -> SelectionSort.genericSort(data);
             case INSERTION_SORT -> InsertionSort.genericSort(data);
+            case BUBBLE_SORT -> BubbleSort.genericSort(data);
             default -> System.out.println("没有这种排序算法");
         }
         long end = System.nanoTime();

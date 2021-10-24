@@ -21,7 +21,7 @@ public class InsertionSort {
 
         int N = data.length;
         for (int i = 0; i < N; i++) {
-            for(int j = i; j > 0 && data[j] < data[j - 1]; j--) {
+            for (int j = i; j > 0 && data[j] < data[j - 1]; j--) {
                 SortHelper.swap(data, j, j - 1);
             }
         }
@@ -33,15 +33,28 @@ public class InsertionSort {
         }
 
         int N = data.length;
+//        for (int i = 0; i < N; i++) {
+//            for(int j = i; j > 0 && (data[j].compareTo(data[j - 1]) < 0); j--) {
+//                SortHelper.swap(data, j, j - 1);
+//            }
+//        }
+
+//        优化多次交换
         for (int i = 0; i < N; i++) {
-            for(int j = i; j > 0 && (data[j].compareTo(data[j - 1]) < 0); j--) {
-                SortHelper.swap(data, j, j - 1);
+            int j = i;
+            E current = data[i];
+            // ☆ 区分比较元素
+            while (j > 0 && (current.compareTo(data[j - 1]) < 0)) {
+                data[j] = data[j - 1];
+                j--;
             }
+            data[j] = current;
+
         }
     }
 
     public static void main(String[] args) {
-        Integer[] data = ArrayGenerator.generatorRandomArray(100, 100);
+        Integer[] data = ArrayGenerator.generatorRandomArray(10, 100);
         // InsertionSort.sort(data);
         System.out.println(Arrays.toString(data));
         InsertionSort.genericSort(data);
