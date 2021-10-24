@@ -1,3 +1,10 @@
+# Idea out put
+out/*
+target/*
+.idea/*
+
+algorithm.iml
+
 # Compiled class file
 *.class
 
