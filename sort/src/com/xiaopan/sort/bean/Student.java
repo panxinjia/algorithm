@@ -1,6 +1,4 @@
-package com.xiaopan.linesearch.bean;
-
-import java.util.Objects;
+package com.xiaopan.sort.bean;
 
 public class Student implements Comparable<Student>{
     private String name;
@@ -55,5 +53,12 @@ public class Student implements Comparable<Student>{
         }
         // 单纯比较age
         return this.age - o.getAge();
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "age=" + age +
+                '}';
     }
 }
