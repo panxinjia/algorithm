@@ -30,6 +30,7 @@ public class BubbleSort {
     }
 
     public static void main(String[] args) {
+        // 测试冒泡排序算法
         Integer[] data = ArrayGenerator.generatorRandomArray(10, 100);
         System.out.println(Arrays.toString(data));
         genericSort(data);
