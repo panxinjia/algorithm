@@ -1,6 +1,14 @@
 package com.xiaopan.linesearch;
 
+import java.util.Random;
+import java.util.stream.IntStream;
+
 public class ArrayGenerator {
+
+    /**
+     * 随机数生成器
+     */
+    private static final Random RANDOM = new Random();
 
     private ArrayGenerator() {}
 
@@ -11,4 +19,17 @@ public class ArrayGenerator {
         }
         return data;
     }
+
+    /**
+     * 生成有序数组
+     * @param n 数组边界
+     * @return 数组
+     */
+    public static Integer[] generatorArray(int n) {
+        return IntStream.rangeClosed(1,n)
+                .boxed()
+                .toArray(Integer[]::new);
+    }
+
+
 }

@@ -2,7 +2,7 @@ package com.xiaopan.linesearch.bean;
 
 import java.util.Objects;
 
-public class Student implements Comparable<Student>{
+public class Student{
     private String name;
     private Integer age;
 
@@ -33,27 +33,40 @@ public class Student implements Comparable<Student>{
         this.age = age;
     }
 
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//
+//        Student student = (Student) o;
+//
+//        if (name != null ? !name.equals(student.name) : student.name != null) return false;
+//        if (age != null ? !age.equals(student.age) : student.age != null) return false;
+//
+//        return true;
+//    }
+
     @Override
     public boolean equals(Object o) {
-        // 引用地址相同 true
+        // name 字段相同, 即两个对象逻辑相同
         if (this == o)
             return true;
 
-        // 类型不同 false
-        if (!(o instanceof Student s))
+        if (o == null)
             return false;
 
-        // 属性字段全部相同返回true
-        return (this.name != null && this.name.equals(s.getName())) &&
-                (this.age != null && this.age.equals(s.getAge()));
+        if (o instanceof Student s) {
+            return (this.name != null && s.name != null)
+                    && this.name.equals(s.name);
+        }
+
+        return false;
     }
 
     @Override
-    public int compareTo(Student o) {
-        if (o == null) {
-            return -1;
-        }
-        // 单纯比较age
-        return this.age - o.getAge();
+    public int hashCode() {
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (age != null ? age.hashCode() : 0);
+        return result;
     }
 }

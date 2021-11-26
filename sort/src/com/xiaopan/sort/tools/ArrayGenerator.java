@@ -1,6 +1,7 @@
 package com.xiaopan.sort.tools;
 
 import java.util.Random;
+import java.util.stream.IntStream;
 
 public class ArrayGenerator {
 
@@ -8,24 +9,20 @@ public class ArrayGenerator {
     private ArrayGenerator() {}
 
     public static Integer[] generatorOrderedArray(int n) {
-        Integer[] data = new Integer[n];
-        for (int i = 0; i < n; i++) {
-            data[i] = i;
-        }
-        return data;
+        return IntStream.range(0, n)
+                .boxed()
+                .toArray(Integer[]::new);
     }
 
     /**
      * 生成指定边界的随机数组
-     * @param n 数组长度
+     * @param n 数据规模
      * @param bound 边界
      * @return 数组
      */
     public static Integer[] generatorRandomArray(int n, int bound) {
-        Integer[] data = new Integer[n];
-        for (int i = 0; i < n; i++) {
-            data[i] = RANDOM.nextInt(bound);
-        }
-        return data;
+        return RANDOM.ints(n, 0, bound)
+                .boxed()
+                .toArray(Integer[]::new);
     }
 }

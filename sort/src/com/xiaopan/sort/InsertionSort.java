@@ -33,6 +33,7 @@ public class InsertionSort {
         }
 
         int N = data.length;
+//        插入排序
 //        for (int i = 0; i < N; i++) {
 //            for(int j = i; j > 0 && (data[j].compareTo(data[j - 1]) < 0); j--) {
 //                SortHelper.swap(data, j, j - 1);

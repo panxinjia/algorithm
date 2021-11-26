@@ -2,9 +2,11 @@ package com.xiaopan.sort;
 
 import com.xiaopan.sort.tools.ArrayGenerator;
 import com.xiaopan.sort.tools.SortHelper;
+import com.xiaopan.sort.tools.SortType;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+import java.util.Random;
 
 /**
  * 冒泡排序算法
@@ -12,7 +14,7 @@ import java.util.Arrays;
 public class BubbleSort {
 
     private BubbleSort() {
-
+        // 排序算法
     }
 
     public static <E extends Comparable<E>> void genericSort(E[] data) {
@@ -35,6 +37,11 @@ public class BubbleSort {
         System.out.println(Arrays.toString(data));
         genericSort(data);
         System.out.println(Arrays.toString(data));
+
+        SortHelper.sortTest(SortType.SELECTION_SORT, new Random()
+                .ints(100_0000,0, 1000_0000)
+                .boxed()
+                .toArray(Integer[]::new));
 
 
     }

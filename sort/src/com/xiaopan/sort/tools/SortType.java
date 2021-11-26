@@ -1,5 +1,8 @@
 package com.xiaopan.sort.tools;
 
+/**
+ * 排序算法类型
+ */
 public enum SortType {
     SELECTION_SORT("选择排序"),
     INSERTION_SORT("插入排序"),

@@ -1,5 +1,8 @@
 package com.xiaopan.sort.bean;
 
+/**
+ * 自定义类型 排序测试
+ */
 public class Student implements Comparable<Student>{
     private String name;
     private Integer age;
