@@ -2,6 +2,7 @@ package com.xiaopan.sort.tools;
 
 import com.xiaopan.sort.BubbleSort;
 import com.xiaopan.sort.InsertionSort;
+import com.xiaopan.sort.MergerSort;
 import com.xiaopan.sort.SelectionSort;
 
 public class SortHelper {
@@ -39,13 +40,14 @@ public class SortHelper {
             case SELECTION_SORT -> SelectionSort.genericSort(data);
             case INSERTION_SORT -> InsertionSort.genericSort(data);
             case BUBBLE_SORT -> BubbleSort.genericSort(data);
+            case MERGER_SORT -> MergerSort.mergerSortGeneric(data);
             default -> System.out.println("没有这种排序算法");
         }
         long end = System.nanoTime();
         double time = (end - start) / 1000_000_000.0;
-        if (!isSorted(data)) {
-            throw new RuntimeException("排序失败~");
-        }
+//        if (!isSorted(data)) {
+//            throw new RuntimeException("排序失败~");
+//        }
         System.out.printf("排序算法:[%s],数据规模:[%d], 运行时间:[%.4f]秒%n",
                 sortType.getSortName(), data.length, time);
     }

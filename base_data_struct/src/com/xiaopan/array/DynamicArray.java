@@ -58,10 +58,17 @@ public class DynamicArray<E> {
     }
 
     public void add(E element, int index) {
-        if (size == capacity())
-            throw new IllegalArgumentException("Add Fail, Array is full");
+//        if (size == capacity())
+//            throw new IllegalArgumentException("Add Fail, Array is full");
 
         checkIndexRange(index,size);
+
+//        延迟扩容, 添加时如果容量不够才进行扩容, jdk api 每次扩容1.5倍
+        if (size == capacity()) {
+            resize(data.length * 2);
+        }
+
+
         for (int i = size; i > index; i--) {
             data[i] = data[i - 1];
         }
@@ -70,6 +77,8 @@ public class DynamicArray<E> {
 
         data[index] = element;
         size++;
+
+
     }
 
     public int find(E element) {
@@ -105,7 +114,14 @@ public class DynamicArray<E> {
         for (int i = index + 1; i < size; i++) {
             data[i - 1] = data[i];
         }
+        // 移除元素断开引用, gc尽快回收内存
+        data[size] = null;
         size--;
+
+        if (size == (capacity() / 2)) {
+            resize(capacity() - (capacity() / 4));
+        }
+
         return element;
     }
 
@@ -157,5 +173,13 @@ public class DynamicArray<E> {
         if (index < 0 || index > bound) {
             throw new IllegalArgumentException(String.format("index = %d 超过访问边界[%d, %d]", index, 0, bound));
         }
+    }
+
+    /**
+     * 动态数组, 支持扩容和缩容, 这种操作要注意, 防止复杂度震荡, 将扩缩容动作均摊到添加和移除上
+     * @param newCapacity 新容量
+     */
+    private void resize(int newCapacity) {
+        this.data = Arrays.copyOf(this.data, newCapacity);
     }
 }

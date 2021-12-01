@@ -2,6 +2,7 @@ package com.xiaopan.array;
 
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.stream.IntStream;
 
 /**
  * @author xiaopantx
@@ -13,7 +14,7 @@ public class Main {
     public static void main(String[] args) {
         DynamicArray<Integer> list = new DynamicArray(20);
         for (int i = 0; i < 10; i++) {
-            list.add(null, i);
+            list.add(i + 1, i);
         }
         System.out.println(list);
         list.addFirst(999);
@@ -53,6 +54,17 @@ public class Main {
         }
 
         System.out.println("<-------------------------------->");
+
+        IntStream.rangeClosed(1,20)
+                .forEach(val -> {
+                    list.addLast(val);
+                    System.out.println(list);
+                });
+
+        System.out.println("<-------------------------------->");
+
+
+
 
     }
 }
