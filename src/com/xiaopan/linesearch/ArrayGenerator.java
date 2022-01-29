@@ -1,5 +1,6 @@
 package com.xiaopan.linesearch;
 
+import java.util.Arrays;
 import java.util.Random;
 import java.util.stream.IntStream;
 
@@ -12,21 +13,38 @@ public class ArrayGenerator {
 
     private ArrayGenerator() {}
 
-    public static Integer[] generatorOrderedArray(int n) {
-        Integer[] data = new Integer[n];
-        for (int i = 0; i < n; i++) {
-            data[i] = i;
-        }
-        return data;
-    }
-
     /**
      * 生成有序数组
-     * @param n 数组边界
+     * @param n 元素个数
+     * @return 数组
+     */
+    public static Integer[] generatorOrderedArray(int n) {
+        return IntStream.rangeClosed(1, n)
+                .boxed()
+                .toArray(Integer[]::new);
+    }
+
+
+    /**
+     * 生成随机数组
+     * @param n 元素个数
      * @return 数组
      */
     public static Integer[] generatorArray(int n) {
-        return IntStream.rangeClosed(1,n)
+        return RANDOM.ints(n, 1, n)
+                .boxed()
+                .toArray(Integer[]::new);
+    }
+
+    /**
+     * 生成随机数组
+     * @param n 元素个数
+     * @param leftBound 左边界
+     * @param rightBound 右边界
+     * @return 数组
+     */
+    public static Integer[] generatorArray(int n, int leftBound, int rightBound) {
+        return RANDOM.ints(n, leftBound, rightBound)
                 .boxed()
                 .toArray(Integer[]::new);
     }

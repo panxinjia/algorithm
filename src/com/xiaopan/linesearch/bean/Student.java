@@ -2,7 +2,7 @@ package com.xiaopan.linesearch.bean;
 
 import java.util.Objects;
 
-public class Student{
+public class Student implements Comparable<Student>{
     private String name;
     private Integer age;
 
@@ -54,5 +54,16 @@ public class Student{
         int result = name != null ? name.hashCode() : 0;
         result = 31 * result + (age != null ? age.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public int compareTo(Student o) {
+        if (this == o)
+            return 0;
+
+        if (o == null)
+            throw new RuntimeException("obj o is null");
+
+        return Integer.compare(this.getAge(), o.getAge());
     }
 }

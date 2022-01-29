@@ -2,6 +2,7 @@ package com.xiaopan.linesearch;
 
 import com.xiaopan.linesearch.bean.Student;
 
+import javax.sound.sampled.Line;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.stream.IntStream;
@@ -13,15 +14,9 @@ import java.util.stream.IntStream;
 public class LineSearch {
 
     private LineSearch() {
-        // nothing to do
+
     }
 
-    /**
-     * 线性查找
-     * @param data 数组
-     * @param target 目标
-     * @return 索引值
-     */
     public static int lineSearch(int[] data, int target) {
         if (data == null)
             return -1;
@@ -34,12 +29,6 @@ public class LineSearch {
         return -1;
     }
 
-    /**
-     * 泛型线性查找支持所有引用数据类型
-     * @param data 数组
-     * @param target 目标
-     * @return 索引值
-     */
     public static <E> int lineSearch(E[] data, E target) {
         if (data == null)
             return -1;
@@ -52,6 +41,7 @@ public class LineSearch {
         return -1;
     }
 
+    @Deprecated
     public static int search(int[] data, int target) {
         if (data == null)
             return -1;
@@ -65,12 +55,11 @@ public class LineSearch {
         return -1;
     }
 
+    @Deprecated
     public static <E extends Comparable> int search(E[] data, E target) {
-        // 临界值
         if (data == null)
             return -1;
 
-        // 清晰, 明确, 可执行的指令集合, 查找元素位置
         for (int i = 0; i < data.length; i++) {
             if (data[i].equals(target))
                 return i;
@@ -80,22 +69,35 @@ public class LineSearch {
     }
 
     public static void main(String[] args) {
-        int[] data = {1,2,3,4,5,6,8};
 
-        int idx1 = search(data, 1);
-        int idx2 = search(data,8);
-        int idx3 = search(data, 10);
+        Student s1 = new Student("tom",20);
+        Student s2 = new Student("jerry", 30);
+        Student s3 = new Student("bob", 19);
 
-        System.out.println("idx1 = " + idx1);
-        System.out.println("idx2 = " + idx2);
-        System.out.println("idx3 = " + idx3);
+        Student[] students = new Student[] {s1,s2,s3};
 
+        int index = LineSearch.<Student>lineSearch(students, new Student("bob", 19));
+        int index2 = LineSearch.<Student>lineSearch(students, new Student("kite", 10));
 
-        // 泛型通用线性查找算法
-        Integer[] arr = IntStream.rangeClosed(1, 100)
-                .boxed().toArray(Integer[]::new);
-        int idx4 = search(arr, 10);
-        System.out.println("idx4 = " + idx4);
+        System.out.println("index = " + index);
+        System.out.println("index2 = " + index2);
+
+//        int[] data = {1,2,3,4,5,6,8};
+//
+//        int idx1 = search(data, 1);
+//        int idx2 = search(data,8);
+//        int idx3 = search(data, 10);
+//
+//        System.out.println("idx1 = " + idx1);
+//        System.out.println("idx2 = " + idx2);
+//        System.out.println("idx3 = " + idx3);
+//
+//
+//        // 泛型通用线性查找算法
+//        Integer[] arr = IntStream.rangeClosed(1, 100)
+//                .boxed().toArray(Integer[]::new);
+//        int idx4 = search(arr, 10);
+//        System.out.println("idx4 = " + idx4);
 
 
         // 性能测试, 数据规模, 算法, 对数器, 运行次数
