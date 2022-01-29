@@ -33,22 +33,8 @@ public class Student{
         this.age = age;
     }
 
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//
-//        Student student = (Student) o;
-//
-//        if (name != null ? !name.equals(student.name) : student.name != null) return false;
-//        if (age != null ? !age.equals(student.age) : student.age != null) return false;
-//
-//        return true;
-//    }
-
     @Override
     public boolean equals(Object o) {
-        // name 字段相同, 即两个对象逻辑相同
         if (this == o)
             return true;
 
