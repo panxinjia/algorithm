@@ -70,17 +70,19 @@ public class LineSearch {
 
     public static void main(String[] args) {
 
-        Student s1 = new Student("tom",20);
-        Student s2 = new Student("jerry", 30);
-        Student s3 = new Student("bob", 19);
 
-        Student[] students = new Student[] {s1,s2,s3};
 
-        int index = LineSearch.<Student>lineSearch(students, new Student("bob", 19));
-        int index2 = LineSearch.<Student>lineSearch(students, new Student("kite", 10));
-
-        System.out.println("index = " + index);
-        System.out.println("index2 = " + index2);
+//        Student s1 = new Student("tom",20);
+//        Student s2 = new Student("jerry", 30);
+//        Student s3 = new Student("bob", 19);
+//
+//        Student[] students = new Student[] {s1,s2,s3};
+//
+//        int index = LineSearch.<Student>lineSearch(students, new Student("bob", 19));
+//        int index2 = LineSearch.<Student>lineSearch(students, new Student("kite", 10));
+//
+//        System.out.println("index = " + index);
+//        System.out.println("index2 = " + index2);
 
 //        int[] data = {1,2,3,4,5,6,8};
 //
@@ -100,18 +102,20 @@ public class LineSearch {
 //        System.out.println("idx4 = " + idx4);
 
 
-        // 性能测试, 数据规模, 算法, 对数器, 运行次数
-//        int[] dataSize = {10_0000, 1000_0000};
-//        for(int size : dataSize) {
-//            Integer[] arr = ArrayGenerator.generatorOrderedArray(size);
-//            long startTime = System.currentTimeMillis();
-//            for (int i = 0; i < 100; i++) {
-//                LineSearch.lineSearch(arr, size);
-//            }
-//            long endTime = System.currentTimeMillis();
-//            long interval = endTime - startTime;
-//            System.out.println("线性查找, 数据规模: " + size + " 运行: 100次 耗时: " + interval + " ms" );
-//        }
+//        线性查找性能测试, O(n) 时间复杂度和数据规模是线性关系
+        int[] dataSize = {10_0000, 1000_0000};
+        for(int size : dataSize) {
+            Integer[] arr = ArrayGenerator.generatorOrderedArray(size);
+            // 查找100次开始时间
+            long startTime = System.nanoTime();
+            for (int i = 0; i < 100; i++) {
+                LineSearch.lineSearch(arr, size);
+            }
+            // 查找100次结束时间
+            long endTime = System.nanoTime();
+            long interval = endTime - startTime;
+            System.out.println("线性查找, 数据规模: " + size + " 运行: 100次 耗时: " + (interval / 1000_000_000.0) + " ms" );
+        }
 
     }
 

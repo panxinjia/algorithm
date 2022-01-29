@@ -14,6 +14,8 @@ import com.xiaopan.sort.tools.SortType;
 
 /**
  * 选择排序
+ *
+ * @author xiaopan
  */
 public class SelectionSort {
     private SelectionSort() {
@@ -40,6 +42,7 @@ public class SelectionSort {
         return result;
     }
 
+
     /**
      * 正排序
      *
@@ -57,7 +60,7 @@ public class SelectionSort {
                 if (data[j] < data[minIndex])
                     minIndex = j;
             }
-            swap(data, i, minIndex);
+            SortHelper.swap(data, i, minIndex);
         }
         return data;
     }
@@ -79,7 +82,7 @@ public class SelectionSort {
                 if (data[j] > data[maxIndex])
                     maxIndex = j;
             }
-            swap(data, i, maxIndex);
+            SortHelper.swap(data, i, maxIndex);
         }
         return data;
     }
@@ -104,10 +107,16 @@ public class SelectionSort {
                     minIndex = j;
                 }
             }
-            swap(data, i, minIndex);
+            SortHelper.swap(data, i, minIndex);
         }
     }
 
+    /**
+     * 比较选择排序
+     * @param data 数组
+     * @param comparator 比较器
+     * @param <E> 泛型参数
+     */
     public static <E> void genericSort(E[] data, Comparator<E> comparator) {
         if (data == null || data.length < 2) {
             return;
@@ -120,7 +129,7 @@ public class SelectionSort {
                     minIndex = j;
                 }
             }
-            swap(data, i, minIndex);
+            SortHelper.swap(data, i, minIndex);
         }
     }
 
@@ -132,54 +141,11 @@ public class SelectionSort {
         return compactResult;
     }
 
-    // 交换两个元素的位置
-    private static void swap(Integer[] data, int m, int n) {
-        int tmp = data[m];
-        data[m] = data[n];
-        data[n] = tmp;
-    }
-
-    // 交换两个元素的位置
-    private static <E> void swap(E[] data, int m, int n) {
-        E tmp = data[m];
-        data[m] = data[n];
-        data[n] = tmp;
-    }
 
     public static void main(String[] args) {
 
-//         测试compact方法
-        Integer[] arr = {1, 23, 4, 10, 5};
-//        Integer[] compactResult = compact(arr, 3);
-//        System.out.println(Arrays.toString(compactResult));
-
-//         测试选择排序
-        Integer[] result =
-//                sortWithCopy(arr);
-//                sort(arr);
-                reverseSort(arr);
-        System.out.println(Arrays.toString(result));
-
-//        测试泛型排序
-        arr = new Integer[]{10, 299, 87, 4, 56};
-        genericSort(arr);
-        System.out.println(Arrays.toString(arr));
-
-//        测试泛型排序, 引用类型处理
-        Student[] students = {
-                new Student(19),
-                new Student(22),
-                new Student(18),
-                new Student(50),
-                new Student(29)
-        };
-
-//       自定义比较排序
-        genericSort(students, Comparator.comparingInt(Student::getAge));
-        System.out.println(Arrays.toString(students));
-
         System.out.println("-------->测试性能<----------");
-        int[] dataSize ={10000, 10_0000};
+        int[] dataSize = {10000, 10_0000};
         for (int i = 0; i < dataSize.length; i++) {
             Integer[] data = ArrayGenerator.generatorRandomArray(dataSize[i], dataSize[i]);
             SortHelper.sortTest(SortType.SELECTION_SORT, data);

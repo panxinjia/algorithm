@@ -13,7 +13,7 @@ import java.util.stream.Stream;
 /**
  * @author xiaopantx
  * @version 1.0
- * @description todo 练习归并排序, 循环, 特殊位置的处理, 优先处理特殊值
+ * @description 归并排序, 递归的理解和引用
  */
 public class MergerSort {
 
